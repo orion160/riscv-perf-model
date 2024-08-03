@@ -47,6 +47,7 @@ namespace olympia
             LSUParameterSet(sparta::TreeNode* n) : sparta::ParameterSet(n) {}
 
             // Parameters for ldst_inst_queue
+            PARAMETER(uint32_t, ldst_pipeline_count, 1, "LSU load/store pipeline count")
             PARAMETER(uint32_t, ldst_inst_queue_size, 8, "LSU ldst inst queue size")
             PARAMETER(uint32_t, replay_buffer_size, ldst_inst_queue_size, "Replay buffer size")
             PARAMETER(uint32_t, replay_issue_delay, 3, "Replay Issue delay")
@@ -164,8 +165,14 @@ namespace olympia
         const int complete_stage_;
 
         // Load/Store Pipeline
-        using LoadStorePipeline = sparta::Pipeline<LoadStoreInstInfoPtr>;
-        LoadStorePipeline ldst_pipeline_;
+        const uint32_t ldst_pipeline_count_;
+        uint32_t ldst_active_pipeline_idx = 0;
+        template <typename T>
+        using LoadStorePipelineProxy = sparta::Pipeline<T, sparta::PhasedPayloadEvent<T>>;
+        using LoadStorePayload = std::pair<LoadStoreInstInfoPtr, void*>;
+        using LoadStorePipeline = LoadStorePipelineProxy<LoadStorePayload>;
+
+        std::vector<std::unique_ptr<LoadStorePipeline>> ldst_pipelines_;
 
         // LSU Microarchitecture parameters
         const bool allow_speculative_load_exec_;
@@ -211,7 +218,7 @@ namespace olympia
         void issueInst_();
 
         // Calculate memory load/store address
-        void handleAddressCalculation_();
+        void handleAddressCalculation_(const LoadStorePayload & p);
         // Handle MMU access request
         void handleMMULookupReq_();
         void handleMMUReadyReq_(const MemoryAccessInfoPtr & memory_access_info_ptr);
