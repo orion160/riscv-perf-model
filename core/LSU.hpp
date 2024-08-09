@@ -118,10 +118,12 @@ namespace olympia
         ////////////////////////////////////////////////////////////////////////////////
         sparta::DataOutPort<uint32_t> out_lsu_credits_{&unit_port_set_, "out_lsu_credits"};
 
-        sparta::DataOutPort<MemoryAccessInfoPtr> out_mmu_lookup_req_{&unit_port_set_,
+        using LSPipelineRequest = std::pair<MemoryAccessInfoPtr, uint32_t>;
+
+        sparta::DataOutPort<LSPipelineRequest> out_mmu_lookup_req_{&unit_port_set_,
                                                                      "out_mmu_lookup_req", 0};
 
-        sparta::DataOutPort<MemoryAccessInfoPtr> out_cache_lookup_req_{&unit_port_set_,
+        sparta::DataOutPort<LSPipelineRequest> out_cache_lookup_req_{&unit_port_set_,
                                                                        "out_cache_lookup_req", 0};
 
         ////////////////////////////////////////////////////////////////////////////////
