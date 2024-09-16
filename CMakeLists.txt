@@ -43,14 +43,6 @@ endif()
 include(${STF_LIB_BASE}/cmake/stf_linker_setup.cmake)
 setup_stf_linker(false)
 
-
-# Use ccache if installed
-find_program (CCACHE_PROGRAM ccache)
-if (CCACHE_PROGRAM)
-  set_property (GLOBAL PROPERTY RULE_LAUNCH_COMPILE "${CCACHE_PROGRAM}")
-  message ("-- Using ccache")
-endif ()
-
 set (SIM_BASE ${PROJECT_SOURCE_DIR})
 set (OLYMPIA_VERSION "v0.1.0")
 add_definitions(-DOLYMPIA_VERSION=\"${OLYMPIA_VERSION}\")
