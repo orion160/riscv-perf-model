@@ -78,7 +78,7 @@ namespace olympia
                 &VectorUopGenerator::generateArithUop<SINGLE_DEST, WIDE_DEST, ADD_DEST_AS_SRC>);
         }
 
-        // Vector arithmetic multiplay-add uop generator, add dest as source
+        // Vector arithmetic multiply-add uop generator, add dest as source
         // For a "vmacc.vv v12, v4, v8" with an LMUL of 4:
         //      Uop 1: vmacc.vv v12, v4, v8, v12
         //      Uop 2: vmacc.vv v13, v5, v9, v13
