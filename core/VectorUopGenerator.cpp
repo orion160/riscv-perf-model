@@ -27,10 +27,10 @@ namespace olympia
 
         // Vector arithmetic single dest uop generator, only increment all src register numbers
         // For a "vmseq.vv v12, v4,v8" with an LMUL of 4:
-        //      Uop 1: vadd.vv v12, v4, v8
-        //      Uop 2: vadd.vv v12, v5, v9
-        //      Uop 3: vadd.vv v12, v6, v10
-        //      Uop 4: vadd.vv v12, v7, v11
+        //      Uop 1: vmseq.vv v12, v4, v8
+        //      Uop 2: vmseq.vv v12, v5, v9
+        //      Uop 3: vmseq.vv v12, v6, v10
+        //      Uop 4: vmseq.vv v12, v7, v11
         {
             constexpr bool SINGLE_DEST = true;
             constexpr bool WIDE_DEST = false;
