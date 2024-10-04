@@ -19,9 +19,9 @@
     },
     {
         "mnemonic": "vaaddu.vx",
-        "pipe": "?",
-        "uop_gen": "NONE",
-        "latency": 0
+        "pipe": "vfixed",
+        "uop_gen": "ARITH",
+        "latency": 1
     },
     {
         "mnemonic": "vadc.vim",

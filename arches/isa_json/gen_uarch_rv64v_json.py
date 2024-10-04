@@ -210,7 +210,7 @@ SUPPORTED_INSTS = {
 
 # Vector Fixed-Point Arithmetic Instructions: Vector Single-Width Averaging Add and Subtract
     "vaaddu.vv" : {"pipe" : "vfixed", "uop_gen" : "ARITH", "latency" : 1},
-    "vaaddu.vv" : {"pipe" : "vfixed", "uop_gen" : "ARITH", "latency" : 1},
+    "vaaddu.vx" : {"pipe" : "vfixed", "uop_gen" : "ARITH", "latency" : 1},
 
     "vaadd.vv" : {"pipe" : "vfixed", "uop_gen" : "ARITH", "latency" : 1},
     "vaadd.vx" : {"pipe" : "vfixed", "uop_gen" : "ARITH", "latency" : 1},
