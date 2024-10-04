@@ -28,4 +28,5 @@ sparta_named_test(Vector_test_vmulvx        Vector_test -l top info vmulvx.out  
 sparta_named_test(Vector_test_vmulvv        Vector_test -l top info vmulvv.out        -c test_cores/test_big_core.yaml --input-file vwmulvv_e8m4.json)
 sparta_named_test(Vector_test_vmseqvv       Vector_test -l top info vmseqvv.out       -c test_cores/test_big_core.yaml --input-file vmseqvv_e8m4.json)
 sparta_named_test(Vector_test_vsadd         Vector_test -l top info vsadd.out         -c test_cores/test_big_core.yaml --input-file vsadd.json)
+sparta_named_test(Vector_test_aadd          Vector_test -l top info vaadd.out         -c test_cores/test_big_core.yaml --input-file vaadd.json)
 sparta_named_test(Vector_unsupported_test   Vector_test -l top info unsupported.out   -c test_cores/test_big_core.yaml --input-file vrgather.json)

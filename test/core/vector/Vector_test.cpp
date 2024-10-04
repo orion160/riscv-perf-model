@@ -301,6 +301,14 @@ void runTests(int argc, char **argv)
         rob_tester.test_num_uops_retired(5);
         rob_tester.test_last_inst_has_tail(false);
     }
+    else if (input_file.find("vaadd.json") != std::string::npos)
+    {
+        cls.runSimulator(&sim);
+
+        rob_tester.test_num_insts_retired(2);
+        rob_tester.test_num_uops_retired(5);
+        rob_tester.test_last_inst_has_tail(false);
+    }
     else
     {
         sparta_assert(false, "Invalid input file: " << input_file);
