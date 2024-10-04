@@ -234,7 +234,14 @@ SUPPORTED_INSTS = {
     "vssra.vx" : {"pipe" : "vfixed", "uop_gen" : "ARITH", "latency" : 1},
     "vssra.vi" : {"pipe" : "vfixed", "uop_gen" : "ARITH", "latency" : 1},
 
-# TODO: Vector Fixed-Point Arithmetic Instructions: Vector Narrowing Fixed-Point Clip Instructions
+# Vector Fixed-Point Arithmetic Instructions: Vector Narrowing Fixed-Point Clip Instructions
+    "vnclipu.wv" : {"pipe" : "vfixed", "uop_gen" : "ARITH", "latency" : 1},
+    "vnclipu.wx" : {"pipe" : "vfixed", "uop_gen" : "ARITH", "latency" : 1},
+    "vnclipu.wi" : {"pipe" : "vfixed", "uop_gen" : "ARITH", "latency" : 1},
+
+    "vnclip.wv" : {"pipe" : "vfixed", "uop_gen" : "ARITH", "latency" : 1},
+    "vnclip.wx" : {"pipe" : "vfixed", "uop_gen" : "ARITH", "latency" : 1},
+    "vnclip.wi" : {"pipe" : "vfixed", "uop_gen" : "ARITH", "latency" : 1},
 
 # TODO: Vector Floating-Point Instructions: Vector Floating-Point Exception Flags
 # TODO: Vector Floating-Point Instructions: Vector Single-Width Floating-Point Add/Subtract Instructions
