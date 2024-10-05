@@ -427,27 +427,27 @@
     },
     {
         "mnemonic": "vfredmax.vs",
-        "pipe": "?",
+        "pipe": "vred",
         "uop_gen": "NONE",
-        "latency": 0
+        "latency": 1
     },
     {
         "mnemonic": "vfredmin.vs",
-        "pipe": "?",
+        "pipe": "vred",
         "uop_gen": "NONE",
-        "latency": 0
+        "latency": 1
     },
     {
         "mnemonic": "vfredosum.vs",
-        "pipe": "?",
+        "pipe": "vred",
         "uop_gen": "NONE",
-        "latency": 0
+        "latency": 1
     },
     {
         "mnemonic": "vfredusum.vs",
-        "pipe": "?",
+        "pipe": "vred",
         "uop_gen": "NONE",
-        "latency": 0
+        "latency": 1
     },
     {
         "mnemonic": "vfrsqrt7.v",
@@ -655,15 +655,15 @@
     },
     {
         "mnemonic": "vfwredosum.vs",
-        "pipe": "?",
+        "pipe": "vred",
         "uop_gen": "NONE",
-        "latency": 0
+        "latency": 1
     },
     {
         "mnemonic": "vfwredusum.vs",
-        "pipe": "?",
+        "pipe": "vred",
         "uop_gen": "NONE",
-        "latency": 0
+        "latency": 1
     },
     {
         "mnemonic": "vfwsub.vf",
@@ -1513,51 +1513,51 @@
     },
     {
         "mnemonic": "vredand.vs",
-        "pipe": "?",
+        "pipe": "vred",
         "uop_gen": "NONE",
-        "latency": 0
+        "latency": 1
     },
     {
         "mnemonic": "vredmax.vs",
-        "pipe": "?",
+        "pipe": "vred",
         "uop_gen": "NONE",
-        "latency": 0
+        "latency": 1
     },
     {
         "mnemonic": "vredmaxu.vs",
-        "pipe": "?",
+        "pipe": "vred",
         "uop_gen": "NONE",
-        "latency": 0
+        "latency": 1
     },
     {
         "mnemonic": "vredmin.vs",
-        "pipe": "?",
+        "pipe": "vred",
         "uop_gen": "NONE",
-        "latency": 0
+        "latency": 1
     },
     {
         "mnemonic": "vredminu.vs",
-        "pipe": "?",
+        "pipe": "vred",
         "uop_gen": "NONE",
-        "latency": 0
+        "latency": 1
     },
     {
         "mnemonic": "vredor.vs",
-        "pipe": "?",
+        "pipe": "vred",
         "uop_gen": "NONE",
-        "latency": 0
+        "latency": 1
     },
     {
         "mnemonic": "vredsum.vs",
-        "pipe": "?",
+        "pipe": "vred",
         "uop_gen": "NONE",
-        "latency": 0
+        "latency": 1
     },
     {
         "mnemonic": "vredxor.vs",
-        "pipe": "?",
+        "pipe": "vred",
         "uop_gen": "NONE",
-        "latency": 0
+        "latency": 1
     },
     {
         "mnemonic": "vrem.vv",
@@ -1645,37 +1645,37 @@
     },
     {
         "mnemonic": "vsadd.vi",
-        "pipe": "vint",
+        "pipe": "vfixed",
         "uop_gen": "ARITH",
         "latency": 1
     },
     {
         "mnemonic": "vsadd.vv",
-        "pipe": "vint",
+        "pipe": "vfixed",
         "uop_gen": "ARITH",
         "latency": 1
     },
     {
         "mnemonic": "vsadd.vx",
-        "pipe": "vint",
+        "pipe": "vfixed",
         "uop_gen": "ARITH",
         "latency": 1
     },
     {
         "mnemonic": "vsaddu.vi",
-        "pipe": "vint",
+        "pipe": "vfixed",
         "uop_gen": "ARITH",
         "latency": 1
     },
     {
         "mnemonic": "vsaddu.vv",
-        "pipe": "vint",
+        "pipe": "vfixed",
         "uop_gen": "ARITH",
         "latency": 1
     },
     {
         "mnemonic": "vsaddu.vx",
-        "pipe": "vint",
+        "pipe": "vfixed",
         "uop_gen": "ARITH",
         "latency": 1
     },
@@ -1945,25 +1945,25 @@
     },
     {
         "mnemonic": "vssub.vv",
-        "pipe": "vint",
+        "pipe": "vfixed",
         "uop_gen": "ARITH",
         "latency": 1
     },
     {
         "mnemonic": "vssub.vx",
-        "pipe": "vint",
+        "pipe": "vfixed",
         "uop_gen": "ARITH",
         "latency": 1
     },
     {
         "mnemonic": "vssubu.vv",
-        "pipe": "vint",
+        "pipe": "vfixed",
         "uop_gen": "ARITH",
         "latency": 1
     },
     {
         "mnemonic": "vssubu.vx",
-        "pipe": "vint",
+        "pipe": "vfixed",
         "uop_gen": "ARITH",
         "latency": 1
     },
@@ -2131,15 +2131,15 @@
     },
     {
         "mnemonic": "vwredsum.vs",
-        "pipe": "?",
+        "pipe": "vred",
         "uop_gen": "NONE",
-        "latency": 0
+        "latency": 1
     },
     {
         "mnemonic": "vwredsumu.vs",
-        "pipe": "?",
+        "pipe": "vred",
         "uop_gen": "NONE",
-        "latency": 0
+        "latency": 1
     },
     {
         "mnemonic": "vwsub.vv",

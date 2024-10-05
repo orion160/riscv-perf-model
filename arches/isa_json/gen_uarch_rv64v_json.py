@@ -236,10 +236,29 @@ SUPPORTED_INSTS = {
 # TODO: Vector Floating-Point Instructions: Widening Floating-Point/Integer Type-Convert Instructions
 # TODO: Vector Floating-Point Instructions: Narrowing Floating-Point/Integer Type-Convert Instructions
 
-# TODO: Vector Reduction Operations: Vector Single-Width Integer Reduction Instructions
-# TODO: Vector Reduction Operations: Vector Widening Integer Reduction Instructions
-# TODO: Vector Reduction Operations: Vector Single-Width Floating-Point Reduction Instructions
-# TODO: Vector Reduction Operations: Vector Widening Floating-Point Reduction Instructions
+# Vector Reduction Operations: Vector Single-Width Integer Reduction Instructions
+    "vredsum.vs" : {"pipe" : "vred", "uop_gen" : "NONE", "latency" : 1},
+    "vredmaxu.vs" : {"pipe" : "vred", "uop_gen" : "NONE", "latency" : 1},
+    "vredmax.vs" : {"pipe" : "vred", "uop_gen" : "NONE", "latency" : 1},
+    "vredminu.vs" : {"pipe" : "vred", "uop_gen" : "NONE", "latency" : 1},
+    "vredmin.vs" : {"pipe" : "vred", "uop_gen" : "NONE", "latency" : 1},
+    "vredand.vs" : {"pipe" : "vred", "uop_gen" : "NONE", "latency" : 1},
+    "vredor.vs" : {"pipe" : "vred", "uop_gen" : "NONE", "latency" : 1},
+    "vredxor.vs" : {"pipe" : "vred", "uop_gen" : "NONE", "latency" : 1},
+
+# Vector Reduction Operations: Vector Widening Integer Reduction Instructions
+    "vwredsumu.vs" : {"pipe" : "vred", "uop_gen" : "NONE", "latency" : 1},
+    "vwredsum.vs" : {"pipe" : "vred", "uop_gen" : "NONE", "latency" : 1},
+
+# Vector Reduction Operations: Vector Single-Width Floating-Point Reduction Instructions
+    "vfredosum.vs" : {"pipe" : "vred", "uop_gen" : "NONE", "latency" : 1},
+    "vfredusum.vs" : {"pipe" : "vred", "uop_gen" : "NONE", "latency" : 1},
+    "vfredmax.vs" : {"pipe" : "vred", "uop_gen" : "NONE", "latency" : 1},
+    "vfredmin.vs" : {"pipe" : "vred", "uop_gen" : "NONE", "latency" : 1},
+
+# Vector Reduction Operations: Vector Widening Floating-Point Reduction Instructions
+    "vfwredosum.vs" : {"pipe" : "vred", "uop_gen" : "NONE", "latency" : 1},
+    "vfwredusum.vs" : {"pipe" : "vred", "uop_gen" : "NONE", "latency" : 1},
 
 # Vector Mask Instructions: Vector Mask-Register Logical Instructions
     "vmandn.mm" : {"pipe" : "vmask", "uop_gen" : "NONE", "latency" : 1},
