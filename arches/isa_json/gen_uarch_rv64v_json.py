@@ -251,13 +251,32 @@ SUPPORTED_INSTS = {
     "vmnor.mm"  : {"pipe" : "vmask", "uop_gen" : "NONE", "latency" : 1},
     "vmxnor.mm" : {"pipe" : "vmask", "uop_gen" : "NONE", "latency" : 1},
 
-# TODO: Vector Mask Instructions: Vector count population in mask vcpop.m
-# TODO: Vector Mask Instructions: vfirst nd-rst-set mask bit
-# TODO: Vector Mask Instructions: vmsbf.m set-before-rst mask bit
-# TODO: Vector Mask Instructions: vmsif.m set-including-rst mask bit
-# TODO: Vector Mask Instructions: vmsof.m set-only-rst mask bit
-# TODO: Vector Mask Instructions: Vector Iota Instruction
-# TODO: Vector Mask Instructions: Vector Element Index Instruction
+    "vmmv.m" : {"pipe" : "vmask", "uop_gen" : "NONE", "latency" : 1},
+    "vmclr.m" : {"pipe" : "vmask", "uop_gen" : "NONE", "latency" : 1},
+    "vmset.m" : {"pipe" : "vmask", "uop_gen" : "NONE", "latency" : 1},
+    "vmnot.m" : {"pipe" : "vmask", "uop_gen" : "NONE", "latency" : 1},
+
+
+# Vector Mask Instructions: Vector count population in mask vcpop.m
+    "vcpop.m" : {"pipe" : "vmask", "uop_gen" : "NONE", "latency" : 1},
+
+# Vector Mask Instructions: vfirst nd-rst-set mask bit
+    "vfirst.m" : {"pipe" : "vmask", "uop_gen" : "NONE", "latency" : 1},
+
+# Vector Mask Instructions: vmsbf.m set-before-rst mask bit
+    "vmsbf.m" : {"pipe" : "vmask", "uop_gen" : "NONE", "latency" : 1},
+
+# Vector Mask Instructions: vmsif.m set-including-rst mask bit
+    "vmsif.m" : {"pipe" : "vmask", "uop_gen" : "NONE", "latency" : 1},
+
+# Vector Mask Instructions: vmsof.m set-only-rst mask bit
+    "vmsof.m" : {"pipe" : "vmask", "uop_gen" : "NONE", "latency" : 1},
+
+# Vector Mask Instructions: Vector Iota Instruction
+    "viota.m" : {"pipe" : "vmask", "uop_gen" : "NONE", "latency" : 1},
+
+# Vector Mask Instructions: Vector Element Index Instruction
+    "vid.v" : {"pipe" : "vmask", "uop_gen" : "NONE", "latency" : 1},
 
 # TODO: Vector Permutation Instructions: Integer Scalar Move Instructions
 # TODO: Vector Permutation Instructions: Floating-Point Scalar Move Instructions
