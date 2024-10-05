@@ -51,6 +51,7 @@ namespace olympia
             VINT,
             VFIXED,
             VMASK,
+            VRED,
             VMUL,
             VDIV,
             VSET,
