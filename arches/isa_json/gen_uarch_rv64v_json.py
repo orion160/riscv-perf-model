@@ -259,12 +259,43 @@ SUPPORTED_INSTS = {
 # TODO: Vector Mask Instructions: Vector Iota Instruction
 # TODO: Vector Mask Instructions: Vector Element Index Instruction
 
-# TODO: Vector Permutation Instructions: Integer Scalar Move Instructions
-# TODO: Vector Permutation Instructions: Floating-Point Scalar Move Instructions
-# TODO: Vector Permutation Instructions: Vector Slide Instructions
-# TODO: Vector Permutation Instructions: Vector Register Gather Instructions
-# TODO: Vector Permutation Instructions: Vector Compress Instruction
-# TODO: Vector Permutation Instructions: Whole Vector Register Move
+# Vector Permutation Instructions: Integer Scalar Move Instruction
+    "vmv.x.s" : {"pipe" : "vperm", "uop_gen" : "NONE", "latency" : 1},
+    "vmv.s.x" : {"pipe" : "vperm", "uop_gen" : "NONE", "latency" : 1},
+
+# Vector Permutation Instructions: Floating-Point Scalar Move Instructions
+    "vfmv.f.s" : {"pipe" : "vperm", "uop_gen" : "NONE", "latency" : 1},
+    "vfmv.s.f" : {"pipe" : "vperm", "uop_gen" : "NONE", "latency" : 1},
+
+# Vector Permutation Instructions: Vector Slide Instructions
+    "vslideup.vx" : {"pipe" : "vperm", "uop_gen" : "NONE", "latency" : 1},
+    "vslideup.vi" : {"pipe" : "vperm", "uop_gen" : "NONE", "latency" : 1},
+
+    "vslidedown.vx" : {"pipe" : "vperm", "uop_gen" : "NONE", "latency" : 1},
+    "vslidedown.vi" : {"pipe" : "vperm", "uop_gen" : "NONE", "latency" : 1},
+
+    "vslide1up.vx" : {"pipe" : "vperm", "uop_gen" : "NONE", "latency" : 1},
+    "vfslide1up.vf" : {"pipe" : "vperm", "uop_gen" : "NONE", "latency" : 1},
+
+    "vslide1down.vx" : {"pipe" : "vperm", "uop_gen" : "NONE", "latency" : 1},
+    "vslide1down.vf" : {"pipe" : "vperm", "uop_gen" : "NONE", "latency" : 1},
+
+
+# Vector Permutation Instructions: Vector Register Gather Instructions
+    "vrgather.vv" : {"pipe" : "vperm", "uop_gen" : "NONE", "latency" : 1},
+    "vrgatherei16.vv" : {"pipe" : "vperm", "uop_gen" : "NONE", "latency" : 1},
+
+    "vrgatehr.vx" : {"pipe" : "vperm", "uop_gen" : "NONE", "latency" : 1},
+    "vrgather.vi" : {"pipe" : "vperm", "uop_gen" : "NONE", "latency" : 1},
+
+# Vector Permutation Instructions: Vector Compress Instruction
+    "vcompress.vm" : {"pipe" : "vperm", "uop_gen" : "NONE", "latency" : 1},
+
+# Vector Permutation Instructions: Whole Vector Register Move
+    "vmv1r.v" : {"pipe" : "vperm", "uop_gen" : "NONE", "latency" : 1},
+    "vmv2r.v" : {"pipe" : "vperm", "uop_gen" : "NONE", "latency" : 1},
+    "vmv4r.v" : {"pipe" : "vperm", "uop_gen" : "NONE", "latency" : 1},
+    "vmv8r.v" : {"pipe" : "vperm", "uop_gen" : "NONE", "latency" : 1},
 }
 
 # Get a list of all vector insts from Mavis

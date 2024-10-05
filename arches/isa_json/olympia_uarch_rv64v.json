@@ -103,9 +103,9 @@
     },
     {
         "mnemonic": "vcompress.vm",
-        "pipe": "?",
+        "pipe": "vperm",
         "uop_gen": "NONE",
-        "latency": 0
+        "latency": 1
     },
     {
         "mnemonic": "vdiv.vv",
@@ -301,15 +301,15 @@
     },
     {
         "mnemonic": "vfmv.f.s",
-        "pipe": "?",
+        "pipe": "vperm",
         "uop_gen": "NONE",
-        "latency": 0
+        "latency": 1
     },
     {
         "mnemonic": "vfmv.s.f",
-        "pipe": "?",
+        "pipe": "vperm",
         "uop_gen": "NONE",
-        "latency": 0
+        "latency": 1
     },
     {
         "mnemonic": "vfmv.v.f",
@@ -505,9 +505,9 @@
     },
     {
         "mnemonic": "vfslide1up.vf",
-        "pipe": "?",
+        "pipe": "vperm",
         "uop_gen": "NONE",
-        "latency": 0
+        "latency": 1
     },
     {
         "mnemonic": "vfsqrt.v",
@@ -1327,9 +1327,9 @@
     },
     {
         "mnemonic": "vmv.s.x",
-        "pipe": "?",
+        "pipe": "vperm",
         "uop_gen": "NONE",
-        "latency": 0
+        "latency": 1
     },
     {
         "mnemonic": "vmv.v.i",
@@ -1351,33 +1351,33 @@
     },
     {
         "mnemonic": "vmv.x.s",
-        "pipe": "?",
+        "pipe": "vperm",
         "uop_gen": "NONE",
-        "latency": 0
+        "latency": 1
     },
     {
         "mnemonic": "vmv1r.v",
-        "pipe": "?",
+        "pipe": "vperm",
         "uop_gen": "NONE",
-        "latency": 0
+        "latency": 1
     },
     {
         "mnemonic": "vmv2r.v",
-        "pipe": "?",
+        "pipe": "vperm",
         "uop_gen": "NONE",
-        "latency": 0
+        "latency": 1
     },
     {
         "mnemonic": "vmv4r.v",
-        "pipe": "?",
+        "pipe": "vperm",
         "uop_gen": "NONE",
-        "latency": 0
+        "latency": 1
     },
     {
         "mnemonic": "vmv8r.v",
-        "pipe": "?",
+        "pipe": "vperm",
         "uop_gen": "NONE",
-        "latency": 0
+        "latency": 1
     },
     {
         "mnemonic": "vmxnor.mm",
@@ -1585,15 +1585,15 @@
     },
     {
         "mnemonic": "vrgather.vi",
-        "pipe": "?",
+        "pipe": "vperm",
         "uop_gen": "NONE",
-        "latency": 0
+        "latency": 1
     },
     {
         "mnemonic": "vrgather.vv",
-        "pipe": "?",
+        "pipe": "vperm",
         "uop_gen": "NONE",
-        "latency": 0
+        "latency": 1
     },
     {
         "mnemonic": "vrgather.vx",
@@ -1603,9 +1603,9 @@
     },
     {
         "mnemonic": "vrgatherei16.vv",
-        "pipe": "?",
+        "pipe": "vperm",
         "uop_gen": "NONE",
-        "latency": 0
+        "latency": 1
     },
     {
         "mnemonic": "vrsub.vi",
@@ -1645,37 +1645,37 @@
     },
     {
         "mnemonic": "vsadd.vi",
-        "pipe": "vint",
+        "pipe": "vfixed",
         "uop_gen": "ARITH",
         "latency": 1
     },
     {
         "mnemonic": "vsadd.vv",
-        "pipe": "vint",
+        "pipe": "vfixed",
         "uop_gen": "ARITH",
         "latency": 1
     },
     {
         "mnemonic": "vsadd.vx",
-        "pipe": "vint",
+        "pipe": "vfixed",
         "uop_gen": "ARITH",
         "latency": 1
     },
     {
         "mnemonic": "vsaddu.vi",
-        "pipe": "vint",
+        "pipe": "vfixed",
         "uop_gen": "ARITH",
         "latency": 1
     },
     {
         "mnemonic": "vsaddu.vv",
-        "pipe": "vint",
+        "pipe": "vfixed",
         "uop_gen": "ARITH",
         "latency": 1
     },
     {
         "mnemonic": "vsaddu.vx",
-        "pipe": "vint",
+        "pipe": "vfixed",
         "uop_gen": "ARITH",
         "latency": 1
     },
@@ -1753,39 +1753,39 @@
     },
     {
         "mnemonic": "vslide1down.vx",
-        "pipe": "?",
+        "pipe": "vperm",
         "uop_gen": "NONE",
-        "latency": 0
+        "latency": 1
     },
     {
         "mnemonic": "vslide1up.vx",
-        "pipe": "?",
+        "pipe": "vperm",
         "uop_gen": "NONE",
-        "latency": 0
+        "latency": 1
     },
     {
         "mnemonic": "vslidedown.vi",
-        "pipe": "?",
+        "pipe": "vperm",
         "uop_gen": "NONE",
-        "latency": 0
+        "latency": 1
     },
     {
         "mnemonic": "vslidedown.vx",
-        "pipe": "?",
+        "pipe": "vperm",
         "uop_gen": "NONE",
-        "latency": 0
+        "latency": 1
     },
     {
         "mnemonic": "vslideup.vi",
-        "pipe": "?",
+        "pipe": "vperm",
         "uop_gen": "NONE",
-        "latency": 0
+        "latency": 1
     },
     {
         "mnemonic": "vslideup.vx",
-        "pipe": "?",
+        "pipe": "vperm",
         "uop_gen": "NONE",
-        "latency": 0
+        "latency": 1
     },
     {
         "mnemonic": "vsll.vi",
@@ -1945,25 +1945,25 @@
     },
     {
         "mnemonic": "vssub.vv",
-        "pipe": "vint",
+        "pipe": "vfixed",
         "uop_gen": "ARITH",
         "latency": 1
     },
     {
         "mnemonic": "vssub.vx",
-        "pipe": "vint",
+        "pipe": "vfixed",
         "uop_gen": "ARITH",
         "latency": 1
     },
     {
         "mnemonic": "vssubu.vv",
-        "pipe": "vint",
+        "pipe": "vfixed",
         "uop_gen": "ARITH",
         "latency": 1
     },
     {
         "mnemonic": "vssubu.vx",
-        "pipe": "vint",
+        "pipe": "vfixed",
         "uop_gen": "ARITH",
         "latency": 1
     },
