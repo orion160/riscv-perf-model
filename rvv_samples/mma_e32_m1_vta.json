@@ -1,0 +1,20 @@
+[
+  {
+    "mnemonic": "li",
+    "rs1": 0,
+    "imm": 32
+  },
+  {
+    "mnemonic": "vsetvli",
+    "rs1": 0,
+    "vtype": "0x10",
+    "rd": 0,
+    "vl": 32,
+    "vta": 1
+  },
+  {
+    "mnemonic": "vle32.v",
+    "vd": 8,
+    "rs1": 4
+  }
+]

@@ -1,0 +1,38 @@
+{
+  "configurations": [
+    {
+      "name": "Debug olympia mma",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceRoot}/build/olympia",
+      "args": [
+        "-l",
+        "top",
+        "info",
+        "../rvv_samples/mma.log",
+        "--arch",
+        "big_core",
+        "--report-all",
+        "../rvv_samples/mma.report",
+        "../rvv_samples/mma_e32_m1_vta.json"
+      ],
+      "stopAtEntry": false,
+      "cwd": "${workspaceRoot}/build",
+      "environment": [],
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        },
+        {
+          "description": "Set Disassembly Flavor to Intel",
+          "text": "-gdb-set disassembly-flavor intel",
+          "ignoreFailures": true
+        }
+      ]
+    }
+  ]
+}
