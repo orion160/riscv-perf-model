@@ -13,8 +13,21 @@
     "vta": 1
   },
   {
-    "mnemonic": "vle32.v",
+    "mnemonic": "flw",
+    "fd": 5,
+    "rs1": 6,
+    "imm": 0
+  },
+  {
+    "mnemonic": "flw",
+    "fd": 4,
+    "rs1": 7,
+    "imm": 0
+  },
+  {
+    "mnemonic": "vfmacc.vf",
     "vd": 8,
-    "rs1": 4
+    "fs1": 5,
+    "vs1": 16
   }
 ]
