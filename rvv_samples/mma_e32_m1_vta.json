@@ -1,12 +1,12 @@
 [
   {
     "mnemonic": "li",
-    "rs1": 0,
+    "rs1": 10,
     "imm": 32
   },
   {
     "mnemonic": "vsetvli",
-    "rs1": 0,
+    "rs1": 10,
     "vtype": "0x10",
     "rd": 0,
     "vl": 32,
@@ -14,20 +14,20 @@
   },
   {
     "mnemonic": "flw",
-    "fd": 5,
-    "rs1": 6,
+    "fd": 15,
+    "rs1": 11,
     "imm": 0
   },
   {
     "mnemonic": "flw",
-    "fd": 4,
-    "rs1": 7,
+    "fd": 16,
+    "rs1": 17,
     "imm": 0
   },
   {
     "mnemonic": "vfmacc.vf",
     "vd": 8,
-    "fs1": 5,
+    "fs1": 15,
     "vs1": 16
   }
 ]

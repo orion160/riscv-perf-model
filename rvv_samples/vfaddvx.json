@@ -1,0 +1,22 @@
+[
+  {
+    "mnemonic": "vsetvli",
+    "rs1": 10,
+    "vtype": "0x10",
+    "rd": 0,
+    "vl": 32,
+    "vta": 1
+  },
+  {
+    "mnemonic": "flw",
+    "fd": 0,
+    "rs1": 11,
+    "imm": 4
+  },
+  {
+    "mnemonic": "vfadd.vx",
+    "vd": 0,
+    "vs2": 1,
+    "fs1": 0
+  }
+]
