@@ -1,12 +1,12 @@
 [
   {
     "mnemonic": "li",
-    "rs1": 0,
+    "rs1": 10,
     "imm": 32
   },
   {
     "mnemonic": "vsetvli",
-    "rs1": 0,
+    "rs1": 10,
     "vtype": "0x10",
     "rd": 0,
     "vl": 32,
@@ -14,7 +14,35 @@
   },
   {
     "mnemonic": "vle32.v",
-    "vd": 8,
-    "rs1": 4
+    "vd": 16,
+    "rs1": 30,
+    "vaddr": "0xdeadbeef",
+    "eew": 32,
+    "stride": 32,
+    "mop": 0
+  },
+  {
+    "mnemonic": "flw",
+    "fd": 15,
+    "rs1": 16,
+    "imm": 0
+  },
+  {
+    "mnemonic": "flw",
+    "fd": 14,
+    "rs1": 17,
+    "imm": 0
+  },
+  {
+    "mnemonic": "flw",
+    "fd": 13,
+    "rs1": 9,
+    "imm": 0
+  },
+  {
+    "mnemonic": "flw",
+    "fd": 12,
+    "rs1": 31,
+    "imm": 0
   }
 ]
