@@ -33,6 +33,39 @@
           "ignoreFailures": true
         }
       ]
+    },
+    {
+      "name": "Debug vector test",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceRoot}/build/test/core/vector/Vector_test",
+      "args": [
+        "-l",
+        "top",
+        "info",
+        "vsadd.out",
+        "-c",
+        "test_cores/test_big_core.yaml",
+        "--input-file",
+        "vsadd.json"
+      ],
+      "stopAtEntry": false,
+      "cwd": "${workspaceRoot}/build/test/core/vector",
+      "environment": [],
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        },
+        {
+          "description": "Set Disassembly Flavor to Intel",
+          "text": "-gdb-set disassembly-flavor intel",
+          "ignoreFailures": true
+        }
+      ]
     }
   ]
 }
