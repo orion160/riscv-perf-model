@@ -1,6 +1,9 @@
 #include "VectorUopGenerator.hpp"
+#include "Inst.hpp"
+#include "InstArchInfo.hpp"
 #include "mavis/Mavis.h"
 #include "sparta/utils/LogUtils.hpp"
+#include <mavis/InstMetaData.h>
 
 namespace olympia
 {
@@ -19,12 +22,9 @@ namespace olympia
         //      Uop 3: vadd.vv v14, v6, v10
         //      Uop 4: vadd.vv v15, v7, v11
         {
-            constexpr bool SINGLE_DEST = false;
-            constexpr bool WIDE_DEST = false;
-            constexpr bool ADD_DEST_AS_SRC = false;
             uop_gen_function_map_.emplace(
                 InstArchInfo::UopGenType::ELEMENTWISE,
-                &VectorUopGenerator::generateUops<SINGLE_DEST, WIDE_DEST, ADD_DEST_AS_SRC>);
+                &VectorUopGenerator::generateUops<InstArchInfo::UopGenType::ELEMENTWISE>);
         }
 
         // Vector single dest uop generator, only increment all src register numbers
@@ -34,14 +34,10 @@ namespace olympia
         //      Uop 3: vmseq.vv v12, v6, v10
         //      Uop 4: vmseq.vv v12, v7, v11
         {
-            constexpr bool SINGLE_DEST = true;
-            constexpr bool WIDE_DEST = false;
-            constexpr bool ADD_DEST_AS_SRC = false;
             uop_gen_function_map_.emplace(
                 InstArchInfo::UopGenType::SINGLE_DEST,
-                &VectorUopGenerator::generateUops<SINGLE_DEST, WIDE_DEST, ADD_DEST_AS_SRC>);
+                &VectorUopGenerator::generateUops<InstArchInfo::UopGenType::SINGLE_DEST>);
         }
-
         // Vector wide dest uop generator, only increment src register numbers for even
         // uops For a "vwmul.vv v12, v4, v8" with an LMUL of 4:
         //     Uop 1: vwmul.vv v12, v4, v8
@@ -53,12 +49,9 @@ namespace olympia
         //     Uop 7: vwmul.vv v18, v10, v14
         //     Uop 8: vwmul.vv v19, v10, v14
         {
-            constexpr bool SINGLE_DEST = false;
-            constexpr bool WIDENING = true;
-            constexpr bool ADD_DEST_AS_SRC = false;
             uop_gen_function_map_.emplace(
                 InstArchInfo::UopGenType::WIDENING,
-                &VectorUopGenerator::generateUops<SINGLE_DEST, WIDENING, ADD_DEST_AS_SRC>);
+                &VectorUopGenerator::generateUops<InstArchInfo::UopGenType::WIDENING>);
         }
 
         // Vector arithmetic multiply-add uop generator, add dest as source
@@ -68,12 +61,9 @@ namespace olympia
         //      Uop 3: vmacc.vv v14, v6, v10, v14
         //      Uop 4: vmacc.vv v15, v7, v11, v15
         {
-            constexpr bool SINGLE_DEST = false;
-            constexpr bool WIDE_DEST = false;
-            constexpr bool ADD_DEST_AS_SRC = true;
             uop_gen_function_map_.emplace(
                 InstArchInfo::UopGenType::MAC,
-                &VectorUopGenerator::generateUops<SINGLE_DEST, WIDE_DEST, ADD_DEST_AS_SRC>);
+                &VectorUopGenerator::generateUops<InstArchInfo::UopGenType::MAC>);
         }
 
         // Vector multiply-add wide dest uop generator, add dest as source
@@ -87,12 +77,9 @@ namespace olympia
         //      Uop 7: vwmacc.vv v18, v7, v11, v18
         //      Uop 8: vwmacc.vv v19, v7, v11, v19
         {
-            constexpr bool SINGLE_DEST = false;
-            constexpr bool WIDE_DEST = true;
-            constexpr bool ADD_DEST_AS_SRC = true;
             uop_gen_function_map_.emplace(
                 InstArchInfo::UopGenType::MAC_WIDE,
-                &VectorUopGenerator::generateUops<SINGLE_DEST, WIDE_DEST, ADD_DEST_AS_SRC>);
+                &VectorUopGenerator::generateUops<InstArchInfo::UopGenType::MAC_WIDE>);
         }
     }
 
@@ -168,27 +155,37 @@ namespace olympia
         return uop;
     }
 
-    template <bool SINGLE_DEST, bool WIDE_DEST, bool ADD_DEST_AS_SRC>
-    const InstPtr VectorUopGenerator::generateUops()
+    template <InstArchInfo::UopGenType Type> const InstPtr VectorUopGenerator::generateUops()
     {
-        // Increment source and destination register values
         auto srcs = current_inst_->getSourceOpInfoList();
         for (auto & src : srcs)
         {
-            // Do not increment scalar sources for transfer instructions
             if (src.operand_type != mavis::InstMetaData::OperandTypes::VECTOR)
-            {
                 continue;
-            }
 
-            if constexpr (WIDE_DEST == true)
-            {
-                // Only increment source values for even uops
-                src.field_value += num_uops_generated_ / 2;
-            }
-            else
+            if constexpr (Type == InstArchInfo::UopGenType::ELEMENTWISE
+                          || Type == InstArchInfo::UopGenType::MAC)
             {
                 src.field_value += num_uops_generated_;
+            }
+            else if constexpr (Type == InstArchInfo::UopGenType::WIDENING
+                               || Type == InstArchInfo::UopGenType::MAC_WIDE)
+            {
+                src.field_value += num_uops_generated_ / 2;
+            }
+            else if constexpr (Type == InstArchInfo::UopGenType::WIDENING_MIXED)
+            {
+                if (src.field_id == mavis::InstMetaData::OperandFieldID::RS2)
+                    src.field_value += num_uops_generated_;
+                else if (src.field_id == mavis::InstMetaData::OperandFieldID::RS1)
+                    src.field_value += num_uops_generated_ / 2;
+            }
+            else if constexpr (Type == InstArchInfo::UopGenType::NARROWING)
+            {
+                if (src.field_id == mavis::InstMetaData::OperandFieldID::RS2)
+                    src.field_value += num_uops_generated_ / 2;
+                else if (src.field_id == mavis::InstMetaData::OperandFieldID::RS1)
+                    src.field_value += num_uops_generated_;
             }
         }
 
@@ -208,38 +205,20 @@ namespace olympia
         };
 
         auto dests = current_inst_->getDestOpInfoList();
-        if constexpr (SINGLE_DEST == false)
+        if constexpr (Type != InstArchInfo::UopGenType::SINGLE_DEST)
         {
             for (auto & dest : dests)
             {
                 dest.field_value += num_uops_generated_;
 
-                if constexpr (ADD_DEST_AS_SRC == true)
+                if constexpr (Type == InstArchInfo::UopGenType::MAC
+                              || Type == InstArchInfo::UopGenType::MAC_WIDE)
                 {
                     add_dest_as_src(srcs, dest);
                 }
             }
         }
 
-        // If uop contains tail or masked elements that need to be left undisturbed, we need to add
-        // the destination registers as source registers
-        if constexpr (ADD_DEST_AS_SRC == false)
-        {
-            const VectorConfigPtr & vector_config = current_inst_->getVectorConfig();
-            const uint32_t num_elems_per_uop = vector_config->getVLMAX() / vector_config->getSEW();
-            const bool uop_contains_tail_elems =
-                (num_elems_per_uop * num_uops_generated_) > vector_config->getVL();
-
-            if (uop_contains_tail_elems && (vector_config->getVTA() == false))
-            {
-                for (auto & dest : dests)
-                {
-                    add_dest_as_src(srcs, dest);
-                }
-            }
-        }
-
-        // Create uop
         InstPtr uop;
         if (current_inst_->hasImmediate())
         {
