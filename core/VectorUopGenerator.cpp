@@ -15,7 +15,7 @@ namespace olympia
         vuops_generated_(&unit_stat_set_, "vector_uops_generated",
                          "Number of vector uops generated", sparta::Counter::COUNT_NORMAL)
     {
-        // Vector uop generator, increment all src and dest register numbers
+        // Vector elementwise uop generator, increment all src and dest register numbers
         // For a "vadd.vv v12, v4,v8" with an LMUL of 4:
         //      Uop 1: vadd.vv v12, v4, v8
         //      Uop 2: vadd.vv v13, v5, v9
@@ -38,8 +38,10 @@ namespace olympia
                 InstArchInfo::UopGenType::SINGLE_DEST,
                 &VectorUopGenerator::generateUops<InstArchInfo::UopGenType::SINGLE_DEST>);
         }
-        // Vector wide dest uop generator, only increment src register numbers for even
-        // uops For a "vwmul.vv v12, v4, v8" with an LMUL of 4:
+
+        // Vector wide uop generator, only increment src register numbers for even
+        // uops
+        // For a "vwmul.vv v12, v4, v8" with an LMUL of 4:
         //     Uop 1: vwmul.vv v12, v4, v8
         //     Uop 2: vwmul.vv v13, v4, v8
         //     Uop 3: vwmul.vv v14, v6, v10
@@ -54,6 +56,22 @@ namespace olympia
                 &VectorUopGenerator::generateUops<InstArchInfo::UopGenType::WIDENING>);
         }
 
+        // Vector wide mixed uop generator
+        // For a "vwaddu.wv v12, v4, v8" with an LMUL of 4:
+        //     Uop 1: vwaddu.wv v12, v4, v8
+        //     Uop 2: vwaddu.wv v13, v5, v8
+        //     Uop 3: vwaddu.wv v14, v6, v10
+        //     Uop 4: vwaddu.wv v15, v7, v10
+        //     Uop 5: vwaddu.wv v16, v8, v12
+        //     Uop 6: vwaddu.wv v17, v9, v12
+        //     Uop 7: vwaddu.wv v18, v10, v14
+        //     Uop 8: vwaddu.wv v19, v11, v14
+        {
+            uop_gen_function_map_.emplace(
+                InstArchInfo::UopGenType::WIDENING_MIXED,
+                &VectorUopGenerator::generateUops<InstArchInfo::UopGenType::WIDENING_MIXED>);
+        }
+
         // Vector arithmetic multiply-add uop generator, add dest as source
         // For a "vmacc.vv v12, v4, v8" with an LMUL of 4:
         //      Uop 1: vmacc.vv v12, v4, v8, v12
@@ -66,7 +84,7 @@ namespace olympia
                 &VectorUopGenerator::generateUops<InstArchInfo::UopGenType::MAC>);
         }
 
-        // Vector multiply-add wide dest uop generator, add dest as source
+        // Vector multiply-add wide dest uop generator
         // For a "vwmacc.vv v12, v4, v8" with an LMUL of 4:
         //      Uop 1: vwmacc.vv v12, v4, v8, v12
         //      Uop 2: vwmacc.vv v13, v4, v8, v13
@@ -80,6 +98,22 @@ namespace olympia
             uop_gen_function_map_.emplace(
                 InstArchInfo::UopGenType::MAC_WIDE,
                 &VectorUopGenerator::generateUops<InstArchInfo::UopGenType::MAC_WIDE>);
+        }
+
+        // Vector fixed point clip narrow uop generator
+        // For a "vnclipu.wv v0, v4, v8" with an LMUL of 4:
+        //      Uop 1: vnclipu.wv.vv v0, v4, v12
+        //      Uop 2: vnclipu.wv.vv v0, v5, v12
+        //      Uop 3: vnclipu.wv.vv v1, v6, v13
+        //      Uop 4: vnclipu.wv.vv v1, v7, v13
+        //      Uop 5: vnclipu.wv.vv v2, v8, v14
+        //      Uop 6: vnclipu.wv.vv v2, v9, v14
+        //      Uop 7: vnclipu.wv.vv v3, v10, v15
+        //      Uop 8: vnclipu.wv.vv v3, v11, v15
+        {
+            uop_gen_function_map_.emplace(
+                InstArchInfo::UopGenType::NARROWING,
+                &VectorUopGenerator::generateUops<InstArchInfo::UopGenType::NARROWING>);
         }
     }
 
@@ -209,7 +243,14 @@ namespace olympia
         {
             for (auto & dest : dests)
             {
-                dest.field_value += num_uops_generated_;
+                if constexpr (Type == InstArchInfo::UopGenType::NARROWING)
+                {
+                    dest.field_value += num_uops_generated_ / 2;
+                }
+                else
+                {
+                    dest.field_value += num_uops_generated_;
+                }
 
                 if constexpr (Type == InstArchInfo::UopGenType::MAC
                               || Type == InstArchInfo::UopGenType::MAC_WIDE)
