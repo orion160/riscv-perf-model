@@ -170,6 +170,8 @@ namespace olympia
                 const bool taken = jinst["taken"].get<bool>();
                 inst->setTakenBranch(taken);
             }
+
+            // TODO: zext
         }
 
         inst->setRewindIterator<uint64_t>(curr_inst_index_);

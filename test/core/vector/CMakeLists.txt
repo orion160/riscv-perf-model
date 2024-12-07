@@ -29,3 +29,15 @@ sparta_named_test(Vector_test_vmulvv        Vector_test -l top info vmulvv.out  
 sparta_named_test(Vector_test_vmseqvv       Vector_test -l top info vmseqvv.out       -c test_cores/test_big_core.yaml --input-file vmseqvv_e8m4.json)
 sparta_named_test(Vector_test_vsadd         Vector_test -l top info vsadd.out         -c test_cores/test_big_core.yaml --input-file vsadd.json)
 sparta_named_test(Vector_unsupported_test   Vector_test -l top info unsupported.out   -c test_cores/test_big_core.yaml --input-file vrgather.json)
+
+add_executable(Vuop_test 
+  Vuop_test.cpp ${SIM_BASE}/sim/OlympiaSim.cpp
+)
+
+target_link_libraries(Vuop_test 
+  PRIVATE
+  core common_test ${STF_LINK_LIBS} mavis SPARTA::sparta
+)
+sparta_named_test(Vuop_test_elementwise
+  Vuop_test -l top info vuop_elementwise.out -c test_cores/test_big_core.yaml --input-file elementwise.json
+)
